@@ -166,7 +166,7 @@ to bake the animation into the model file, which a web viewer then plays.
 
 ```bash
 # 1. clone
-git clone https://github.com/<you>/animato.git
+git clone https://github.com/otdnnc/animato.git
 cd animato
 
 # 2. backend deps (bpy, fastapi, …) — no Blender install needed
