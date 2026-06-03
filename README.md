@@ -4,7 +4,7 @@
 
 ### Animate a 3D character with AI — at zero cost, on your own machine.
 
-Describe a motion in plain English → get a playable animation back.<br>
+Describe a motion in plain text → get a playable animation back.<br>
 **No Blender. No GPU. No subscription. One AI inference per animation.**
 
 <br>
@@ -20,6 +20,8 @@ Describe a motion in plain English → get a playable animation back.<br>
 <br>
 
 <img src="images/preview.gif" alt="Animato in action — upload a rigged model, describe a motion, watch it animate" width="100%">
+
+<sub>🌐 <b>English</b> · <a href="README-JAPANESE.md">日本語</a></sub>
 
 </div>
 
