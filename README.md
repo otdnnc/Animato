@@ -21,7 +21,7 @@ Describe a motion in plain text → get a playable animation back.<br>
 
 <img src="images/preview.gif" alt="Animato in action — upload a rigged model, describe a motion, watch it animate" width="100%">
 
-<sub>🌐 <b>English</b> · <a href="README-JAPANESE.md">日本語</a></sub>
+<sub>🌐 <b>English</b> · <a href="README_JP.md">日本語</a></sub>
 
 </div>
 
