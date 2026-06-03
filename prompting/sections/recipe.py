@@ -11,6 +11,11 @@ def section_recipe():
         "  - `bpy.types.Bone.Matrix()`            <-- DOES NOT EXIST",
         "  - `bone.rotate(...)` / `pose_bone.rotate(...)`  <-- DOES NOT EXIST",
         "  - importing Matrix/Euler/Quaternion from `bpy` <-- they live in `mathutils`",
+        "  - `Quaternion((axis, angle))` / `Quaternion((Vector((1,0,0)), angle))`"
+        "  <-- WRONG: that is ONE argument of length 2 and raises"
+        " 'sequence length is 2, expected [3 - 4]'. The axis-angle form takes TWO"
+        " SEPARATE arguments: `Quaternion(axis, angle)` (axis is the 3-sequence,"
+        " angle is the radians float).",
         f"  - `action.fcurves` <-- DOES NOT EXIST in Blender {bpy.app.version_string}"
         " (layered actions). See the fcurve-iteration helper below.",
         "",
@@ -48,7 +53,10 @@ def section_recipe():
         "    pb.keyframe_insert(data_path='rotation_euler', frame=10)",
         "",
         "Quaternion example (when rotation_mode == 'QUATERNION', the default here):",
+        "    # axis-angle: TWO separate args (axis 3-seq, angle radians). NOT one tuple.",
         "    pb.rotation_quaternion = Quaternion((1, 0, 0), math.radians(30))  # axis, angle",
+        "    pb.rotation_quaternion = Quaternion(Vector((1, 0, 0)), math.radians(30))  # same, Vector axis",
+        "    # raw [w, x, y, z] components form takes ONE 4-sequence: Quaternion((1, 0, 0, 0))",
         "    pb.keyframe_insert(data_path='rotation_quaternion', frame=10)",
         "",
         "Translate / scale a pose bone (local space) and keyframe:",
@@ -79,6 +87,9 @@ def section_recipe():
         "Notes:",
         "- pose-bone rotations/locations are in the bone's LOCAL space (the local axes listed",
         "  above), composed on top of the rest pose — identity basis means 'rest pose'.",
+        "- NEVER edit the rest pose. Stay in POSE mode (matrix_basis only); do NOT enter EDIT mode",
+        "  to change edit_bone head/tail/roll, and do NOT call `bpy.ops.pose.armature_apply()`.",
+        "  Posing a bone WITHOUT keyframing it leaks into the exported bind pose — always keyframe.",
         "- A pose bone uses EITHER rotation_euler OR rotation_quaternion depending on",
         "  rotation_mode. Set rotation_mode first, then key the matching data_path.",
         "- To reset a bone to rest at a frame: set its rotation to identity",
